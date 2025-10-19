@@ -4,12 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\Postcollection;
 use App\Http\Resources\PostResource;
+use App\Models\Country;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
+    public function countriesPosts($countryId)
+    {
+        $country = Country::findOrFail($countryId);
+        $posts = $country->posts()->get();
+        return response()->json([
+            'posts' => $posts,
+        ]);
+    }
+
     public function index(Request $request)
     {
         $perPage = $request->input('perPage', 10);

@@ -3,12 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserReasouce;
+use App\Models\Country;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
 
+    public function countriesUsers($countryId)
+    {
+        $country = Country::findOrFail($countryId);
+        $users = $country->users()->get();
+        return response()->json([
+            'users' => $users,
+        ]);
+    }
     public function index()
     {
         //

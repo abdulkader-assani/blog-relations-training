@@ -60,6 +60,11 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
+    }
+
     public function reactions(): BelongsToMany
     {
         return $this->BelongsToMany(Reaction::class, 'reactionable');

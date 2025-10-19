@@ -36,6 +36,7 @@ Route::prefix('posts')->group(function () {
     Route::get('/{id}', [PostController::class, 'show']);
     Route::put('/{id}', [PostController::class, 'update']);
     Route::delete('/{id}', [PostController::class, 'delete']);
+    
 });
 
 Route::prefix('tags')->group(function () {
@@ -52,6 +53,7 @@ Route::prefix('users')->group(function () {
     Route::get('/{id}', [UserController::class, 'show']);
     Route::put('/{id}', [UserController::class, 'update']);
     Route::delete('/{id}', [UserController::class, 'delete']);
+    Route::get('countries/{countryId}', [UserController::class, 'countriesUsers']);
 });
 
 Route::prefix('reactions')->group(function () {
@@ -61,3 +63,4 @@ Route::prefix('reactions')->group(function () {
     Route::put('/{id}', [ReactionController::class, 'update']);
     Route::delete('/{id}', [ReactionController::class, 'delete']);
 });
+Route::get('countries/{countryId}', [PostController::class, 'countriesPosts']);
