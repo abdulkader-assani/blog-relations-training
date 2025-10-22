@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use App\Enum\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+
 
 class Reaction extends Model
 {
@@ -15,8 +15,13 @@ class Reaction extends Model
     protected $fillable = [
         'name',
         'image',
+        'status',
     ];
 
+    protected $casts = [
+        'status' => StatusEnum::class,
+    ];
+    
     public function posts()
     {
         return $this->morphedByMany(Post::class, 'reactionable');

@@ -50,6 +50,11 @@ class User extends Authenticatable
         ];
     }
 
+    // public function canAccessPanel(\Filament\Panel $panel): bool
+    // {
+    //     return true;
+    // }
+
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
@@ -72,5 +77,5 @@ class User extends Authenticatable
 
 
     // -------------------------------------------------------
-    
+
 }

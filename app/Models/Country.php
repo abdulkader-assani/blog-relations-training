@@ -28,6 +28,7 @@ class Country extends Model
     public function posts()
     {
         // return $this->hasManyThrough(Post::class, User::class);
+        
         return Post::whereHas('user.city', function ($query) {
             $query->where('country_id', $this->getKey());
         });
